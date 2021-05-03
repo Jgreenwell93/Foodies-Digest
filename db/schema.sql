@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS foodie_db;
+
+CREATE DATABASE foodie_db;

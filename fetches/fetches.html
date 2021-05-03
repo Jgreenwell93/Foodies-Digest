@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body class="flex-column min-100-vh">
+    <header class="hero">
+      <h1 class="app-title"><i class="fab fa-github"></i>Foodies-Digest</h1>
+      <p>Input an ingredient and see a list of recipes using that ingredient</p>
+    </header>
+  
+  
+    <main class="flex-row justify-space-between">
+      <div class="col-12 col-md-4">
+  
+        <div class="card">
+          <h3 class="card-header text-uppercase">Search By Ingredient</h3>
+          <form id="user-form" class="card-body">
+            <label class="form-label" for="username">Ingredient</label>
+            <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="btn">Get Recipes</button>
+          </form>
+        </div>
+  
+  
+      <div class="col-12 col-md-8">
+        <h2 class="subtitle">Showing Recipes: <span id="repo-search-term"></span></h2>
+        <div id="repos-container" class="list-group"></div>
+      </div>
+    </main>
+  
+    <script src="./fetches.js"></script>
+  </body>
+</html>
