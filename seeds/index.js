@@ -1,5 +1,5 @@
 const seedUsers = require('./users');
-const seedRecipe = require('./recipe');
+const seedRecipes = require('./recipe');
 
 const sequelize = require('../config/connection');
 
@@ -9,7 +9,7 @@ const seedAll = async () => {
   await seedUsers();
   console.log('\n----- USERS SEEDED -----\n');
 
-  await seedRecipe();
+  await seedRecipes();
   console.log('\n----- RECIPES SEEDED -----\n');
 
   process.exit(0);
