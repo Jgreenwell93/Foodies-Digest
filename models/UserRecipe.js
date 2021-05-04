@@ -33,6 +33,7 @@ UserRecipe.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'userRecipe',
+    freezeTableName: true,
   }
 );
 

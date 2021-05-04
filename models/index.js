@@ -3,32 +3,27 @@ const Recipe = require('./Recipe');
 const UserRecipe = require('./UserRecipe');
 
 
-User.hasMany(Recipe, {
-    foreignKey: 'id',
+UserRecipe.belongsTo(User, {
+    foreignKey: 'user_id',
   });
   
-Recipe.hasMany(User, {
-    foreignKey: 'id',
-  });
+// Recipe.hasMany(User, {
+//     foreignKey: 'id',
+//   });
 
-UserRecipe.belongsToMany(User, {
-    through: User,
-    foreignKey: 'id',
+UserRecipe.belongsTo(Recipe, {
+    foreignKey: 'recipe_id',
 });
 
-User.hasMany(Recipe, {
-    through: Recipe,
-    foreignKey: 'id',
-});
+// User.hasMany(Recipe, {
+//     through: Recipe,
+//     foreignKey: 'id',
+// });
 
-Recipe.belongsToMany(User, {
-    through: User,
-    foreignKey: 'id',
-});
+// Recipe.belongsToMany(User, {
+//     through: User,
+//     foreignKey: 'id',
+// });
 
-User.hasMany(Recipe, {
-    through: Recipe,
-    foreignKey: 'id',
-});
 
 module.exports = { User, Recipe, UserRecipe };

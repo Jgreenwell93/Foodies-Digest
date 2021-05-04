@@ -3,11 +3,12 @@ const sequelize = require('../config/connection');
 
 class Recipe extends Model {};
 
-Recipe.init( 
+Recipe.init(
     {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true,
         },
         title: {
             type: DataTypes.STRING,
@@ -17,11 +18,14 @@ Recipe.init(
             type: DataTypes.STRING,
             allowNull: true,
         },
-        sequelize,
-        timestamps: false,
-        underscored: true,
-        modelName: 'recipe',
-  }  
+  },
+  {
+    sequelize,
+    timestamps: false,
+    underscored: true,
+    modelName: 'recipe',
+    freezeTableName: true,
+  } 
 );
 
 module.exports = Recipe;
