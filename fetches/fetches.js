@@ -19,12 +19,13 @@ var formSubmitHandler = function (event) {
 };
 
 var getRecipes = function (ingredient) {
-  var apikey = '2a40afcf346f48508fca4af2488f00c9'
-  var apiUrl = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + ingredient + '&apiKey=' + apikey;
+  var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69'
+  var apiUrl = 'https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=' + ingredient + '&instructionsRequired=true&apiKey=' + apikey + '&number=1';
   console.log('apiurl = ' + apiUrl);
 
   fetch(apiUrl)
     .then(function (response) {
+      console.log(response);
       if (response.ok) {
         response.json().then(function (data) {
           displayRecipes(data, ingredient);
@@ -38,13 +39,17 @@ var getRecipes = function (ingredient) {
     });
 };
 
-var displayRecipes = function (recipes, searchTerm) {
+var displayRecipes = function (data, searchTerm) {
+  var recipes = data.results;
   if (recipes.length === 0) {
     recipeContainerEl.textContent = 'No recipes found.';
     return;
   }
 
-  console.log(recipes);
+  console.log(data);
+  console.log(data.results[0]);
+  
+
 
   recipeSearchTerm.textContent = searchTerm;
 
