@@ -18,7 +18,14 @@ Recipe.init(
             type: DataTypes.STRING,
             allowNull: true,
         },
-  },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'user',
+              key: 'id',
+            }
+        }
+    },
   {
     sequelize,
     timestamps: false,
@@ -26,6 +33,7 @@ Recipe.init(
     modelName: 'recipe',
     freezeTableName: true,
   } 
+  
 );
 
 module.exports = Recipe;
