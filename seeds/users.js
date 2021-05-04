@@ -6,8 +6,8 @@ const userData = [
       "password": "password12345"
     },
     {
-      "name": "Jennifer",
-      "email": "jennifer@mail.com",
+      "name": "Jenny",
+      "email": "jenny@mail.com",
       "password": "password12345"
     },
     {
