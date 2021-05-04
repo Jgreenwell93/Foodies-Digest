@@ -10,12 +10,4 @@ Recipe.belongsTo(User,{
   foreignKey:'user_id'
 });
 
-Recipe.belongsToMany(User, {
-    through: {
-        model: 'userRecipe',
-        unique: false
-    },
-    as: 'favrecipes'
-});
-
 module.exports = { User, Recipe,};
