@@ -1,11 +1,12 @@
-const seedUsers = require('./users');
-const seedRecipes = require('./recipe');
+const seedUsers = require('./users.js');
+const seedRecipes = require('./recipe.js');
 
 const sequelize = require('../config/connection');
 
 const seedAll = async () => {
   await sequelize.sync({ force: false });
   console.log('\n----- DATABASE SYNCED -----\n');
+
   await seedUsers();
   console.log('\n----- USERS SEEDED -----\n');
 
