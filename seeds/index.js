@@ -1,7 +1,7 @@
-const seedUsers = require('./users.js');
+const sequelize = require('../config/connection');
+const seedUsers = require('./user.js');
 const seedRecipes = require('./recipe.js');
 
-const sequelize = require('../config/connection');
 
 const seedAll = async () => {
   await sequelize.sync({ force: false });
