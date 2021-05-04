@@ -1,7 +1,7 @@
 var userFormEl = document.querySelector('#user-form');
 var ingredientInputEl = document.querySelector('#username');
-var repoContainerEl = document.querySelector('#repos-container');
-var repoSearchTerm = document.querySelector('#repo-search-term');
+var recipeContainerEl = document.querySelector('#repos-container');
+var recipeSearchTerm = document.querySelector('#repo-search-term');
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
@@ -38,34 +38,23 @@ var getRecipes = function (ingredient) {
     });
 };
 
-var getFeaturedRepos = function (language) {
-  var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
-
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        displayRepos(data.items, language);
-      });
-    } else {
-      alert('Error: ' + response.statusText);
-    }
-  });
-};
-
 var displayRecipes = function (recipes, searchTerm) {
   if (recipes.length === 0) {
-    repoContainerEl.textContent = 'No recipes found.';
+    recipeContainerEl.textContent = 'No recipes found.';
     return;
   }
 
-  repoSearchTerm.textContent = searchTerm;
+  console.log(recipes);
+
+  recipeSearchTerm.textContent = searchTerm;
 
   for (var i = 0; i < recipes.length; i++) {
     var recipeTitle = recipes[i].title;
+    var recipeID = recipes[i].id;
 
     var recipeEl = document.createElement('a');
     recipeEl.classList = 'list-item flex-row justify-space-between align-center';
-    recipeEl.setAttribute('href', './single-repo.html?repo=' + recipeTitle);
+    recipeEl.setAttribute('href', './single-recipe.html?id=' + recipeID + '?title=' + recipeTitle);
 
     var titleEl = document.createElement('span');
     titleEl.textContent = recipeTitle;
@@ -77,7 +66,7 @@ var displayRecipes = function (recipes, searchTerm) {
 
     recipeEl.appendChild(statusEl);
 
-    repoContainerEl.appendChild(recipeEl);
+    recipeContainerEl.appendChild(recipeEl);
   }
 };
 
