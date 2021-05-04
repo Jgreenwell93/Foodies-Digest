@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class Recipe extends Model {};
 
-Recipe.init('id', 'title', 'image', 
+Recipe.init( 
     {
         id: {
             type: DataTypes.INTEGER,
