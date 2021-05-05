@@ -13,7 +13,7 @@ const ingredientSearchHandler = async (event) => {
     console.log(ingredientTwo);
 
   if (ingredientOne || ingredientTwo || ingredientThree) {
-    var apikey = '2a40afcf346f48508fca4af2488f00c9';
+    var apikey = '';
     var searchByIngredientsUrl = 'https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=' + ingredients + '&instructionsRequired=true&apiKey=' + apikey + '&number=1';    
     console.log(searchByIngredientsUrl);
     fetch(searchByIngredientsUrl).then(function (response) {
