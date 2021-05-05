@@ -19,7 +19,7 @@ var formSubmitHandler = function (event) {
 };
 
 var getRecipes = function () {
-  var apikey = '2a40afcf346f48508fca4af2488f00c9'
+  var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69'
   var apiUrl = 'https://api.spoonacular.com/recipes/random?' + 'apiKey=' + apikey + '&number=3';
   console.log('apiurl = ' + apiUrl);
 
