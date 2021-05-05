@@ -22,13 +22,22 @@ const ingredientSearchHandler = async (event) => {
       
     if (ingredients.length > 0) {
         console.log('ingredientOne = ' + ingredientOne);
-        const response = await fetch('/search', {
-          method: 'GET',
-          body: JSON.stringify({ ingredientOne }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        // const response = await fetch('/search', {
+        //   method: 'POST',
+        //   body: JSON.stringify({ ingredientOne }),
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        // });
+        var url = `https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=${ingredients}`
+
+        const response = await fetch(url)
+        .then(function(res){
+          return res.json();
+        })
+        .then(function(data){
+          console.log(data);
+        })
 
     
         if (response.ok) {
