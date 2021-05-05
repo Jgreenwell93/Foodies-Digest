@@ -6,31 +6,10 @@ const router = require('express').Router();
 
 // const withAuth = require('../../utils/auth');
 
-var apikey = '481279d87a314d4d94b73f8882f542e7'
+var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69'
 var apiUrl = 'https://api.spoonacular.com/recipes/random?' + 'apiKey=' + apikey + '&number=3';
 
 const fetch = require('node-fetch');
-
-// get route for homepage
-// router.get('/', async (req, res) => {
-//     try {
-//       const dbTempRecipes = await Recipe.findAll({
-//             attributes: ['title', 'image', ],
-//           },
-//       );
-//       const tempRecipes = dbTempRecipes.map((ele) =>
-//         ele.get({ plain: true })
-//       );
-  
-//       res.render('homepage', {
-//         tempRecipes,
-//         // loggedIn: req.session.loggedIn,
-//       });
-//     } catch (err) {
-//       console.log(err);
-//       res.status(500).json(err);
-//     }
-//   });
 
 router.get('/', async (req, res) => {
   try {
@@ -60,6 +39,53 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+
+router.get('/search', async (req, res) => {
+  console.log("i'm in home-route search");
+  try {
+      ingredients = req.body.ingredientOne;  // put this back when hooking up to handlebars and event handlder
+      console.log('ingredients =' + ingredients);
+    // var ingredients = 'chicken';
+    var searchByIngredientsUrl = 'https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=' + ingredients + '&instructionsRequired=true&apiKey=' + apikey + '&number=1';    
+    console.log(searchByIngredientsUrl);
+    const recipeData = await fetch(searchByIngredientsUrl).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (data) {
+          console.log(data);
+
+          console.log(data.results);
+            const recipeArray = data.results.map( (recipe) => {
+              return {
+                id: recipe.id,
+                title: recipe.title,
+                image: recipe.image,
+              }
+            });  
+            console.log('recipeArray = ');
+            console.log(recipeArray);
+
+            res.render('results', {
+            recipeArray
+          });            
+          });
+      }    
+      next();
+  })
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+
+
+
+
+
   router.get('/login', (req, res) => {
     // if (req.session.loggedIn) {
     //   res.redirect('/');
@@ -78,38 +104,16 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+
+
+
+
+
+
 module.exports = router;
 
 
 
-  router.get('/search', async (req, res) => {
-    try {
-        // ingredients = req.body.ingredients;  // put this back when hooking up to handlebars and event handlder
-      var ingredients = 'chicken';
-      var searchByIngredientsUrl = 'https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=' + ingredients + '&instructionsRequired=true&apiKey=' + apikey + '&number=1';    
-      const recipeData = await fetch(searchByIngredientsUrl).then(function (response) {
-          if (response.ok) {
-            response.json().then(function (data) {
-            console.log(data);
-              const recipeArray = data.results.map( (recipe) => {
-                return {
-                  id: recipe.id,
-                  title: recipe.title,
-                  image: recipe.image,
-                }
-              });  
-              console.log(recipeArray);
-  
-              res.render('searchresults', {
-              recipeData
-            });            
-            });
-        }    
-    })
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  });
+
 
 
