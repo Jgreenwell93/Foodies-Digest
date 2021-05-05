@@ -3,10 +3,12 @@ const { User } = require('../models')
 
 
 const router = require('express').Router();
+
 // const withAuth = require('../../utils/auth');
 
 var apikey = '481279d87a314d4d94b73f8882f542e7'
 var apiUrl = 'https://api.spoonacular.com/recipes/random?' + 'apiKey=' + apikey + '&number=3';
+
 const fetch = require('node-fetch');
 
 // get route for homepage
@@ -77,4 +79,37 @@ router.get('/signup', (req, res) => {
 });
 
 module.exports = router;
+
+
+
+  router.get('/search', async (req, res) => {
+    try {
+        // ingredients = req.body.ingredients;  // put this back when hooking up to handlebars and event handlder
+      var ingredients = 'chicken';
+      var searchByIngredientsUrl = 'https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=' + ingredients + '&instructionsRequired=true&apiKey=' + apikey + '&number=1';    
+      const recipeData = await fetch(searchByIngredientsUrl).then(function (response) {
+          if (response.ok) {
+            response.json().then(function (data) {
+            console.log(data);
+              const recipeArray = data.results.map( (recipe) => {
+                return {
+                  id: recipe.id,
+                  title: recipe.title,
+                  image: recipe.image,
+                }
+              });  
+              console.log(recipeArray);
+  
+              res.render('searchresults', {
+              recipeData
+            });            
+            });
+        }    
+    })
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+
 
