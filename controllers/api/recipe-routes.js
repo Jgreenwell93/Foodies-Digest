@@ -14,4 +14,6 @@ const withAuth = require('../../utils/auth');
 // route tied to PUT on front end to remove from favorites:
 // route to DELETE/DESTROY saved receipes (if time)
 
+router.get('/:id')
+
 module.exports = router;
