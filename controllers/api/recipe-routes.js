@@ -18,7 +18,7 @@ router.post('/', withAuth, async (req, res) => {
 
 // route tied to Fetch (userRecipes/favorites) on front end for get all title/image:
 // READ recipe GET ALL ROUTE to return db for logged in user (image, title, id?)
-router.get('/', withAuth, async (req, res) => {
+router.get('/:favorites', withAuth, async (req, res) => {
     try {
         const allRecipeData = await Recipe.findAll({
             include: [
