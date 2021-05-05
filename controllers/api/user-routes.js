@@ -28,7 +28,9 @@ router.post('/login', async (req,res)=> {
         const userData = await User.findOne({where: {username: req.body.username}});
         
         if(!userData) {
-            res.status(400).json({message: 'incorrect username'});
+            res
+            .status(400)
+            .json({message: 'incorrect username'});
             return;
         }
         const validPassword = await userData.checkPassword(req.body.password);
@@ -37,15 +39,37 @@ router.post('/login', async (req,res)=> {
             res.status(400).json({message: 'incorrect password'});
             return;
         }
-    res.json({user: userData, message: 'You are logged in!'})
-    } catch (err)
-{
-    res.status(400).json(err);
-}
+        req.session.save(() => {
+          req.session.user_id = userData.id;
+          req.session.logged_in = true;
+    res.json({user: userData, message: 'You are logged in!'});
+    }); 
+ }   
+ catch (err) {
+    
+  console.log(err);
+  res.status(400).json(err);
+ }
 });
 
 // tie to POST route on front end
 // route to CREATE new user in db
+router.post('/signup', async (req, res) => {
+  try {
+    const newUser = await User.create(req.body);
+
+    req.session.save(() => {
+      req.session.user_id = newUser.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(newUser);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+    }
+});
+
 
 
 // POST route for login (findOne) & error handling for incorrect user/pw
