@@ -31,7 +31,7 @@ router.get('/:favorites', withAuth, async (req, res) => {
         const allRecipe = allRecipeData.map((allRecipe) =>
             allRecipe.get({ plain: true })
         );
-        res.render('selectedpassedhandlebartemp', {
+        res.render('favorites', {
             allRecipe,
             loggedIn: req.session.loggedIn,
         });
@@ -60,7 +60,7 @@ router.get('/:title', withAuth, async (req, res) => {
         const fullRecipe = recipeData.map((fullRecipe) =>
             fullRecipe.get({ plain: true })
         );
-        res.render('selectedhandlebartemp', {
+        res.render('fullrecipe', {
             fullRecipe,
             loggedIn: req.session.loggedIn,
         });
