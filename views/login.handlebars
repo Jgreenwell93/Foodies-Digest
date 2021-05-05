@@ -1,20 +1,21 @@
 <h1>Log In</h1>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation login-form" novalidate>
           <div class="form-col">
             <div class="col-md-6 mb-3">
               <label for="validationCustom02">Username:</label>
-              <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+              <input type="text" class="form-control username" id="validationCustom02" value="Otto" required>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="validationCustom03">Password:</label>
-              <input type="text" class="form-control" id="validationCustom03" required>
+              <input type="text" class="form-control password" id="validationCustom03" required>
               <div class="invalid-feedback">
                 Please provide a valid city.
               </div>
             </div>
-            <button class="btn btn-primary" type="submit">Sign In</button>
+            <button class="btn btn-primary sign-in-button" id="loginSubmit" type="submit">Sign In</button>
           </div>
         </form>
+        <script src="/JS/login.js"></script>
