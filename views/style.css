@@ -1,3 +1,19 @@
-#fullrecipeimg{
+#fullrecipeimg {
+    margin: 2%;
+    justify-content: center;
     max-height: 400px;
+    max-width: 600px;
+}
+
+#recipeTitle {
+    text-align: center;
+    margin: 2%;
+}
+
+.vertical{
+    border-left: thin solid black;
+}
+
+#ingredient{
+    margin: 2%;
 }
