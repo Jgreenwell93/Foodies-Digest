@@ -4,20 +4,42 @@ const { User } = require('../models')
 const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
 
+var apikey = '481279d87a314d4d94b73f8882f542e7'
+var apiUrl = 'https://api.spoonacular.com/recipes/random?' + 'apiKey=' + apikey + '&number=3';
+
 // get route for homepage
-router.get('/', async (req, res) => {
-    try {
-      const dbTempRecipes = await Recipe.findAll({
-            attributes: ['title', 'image', ],
-          },
-      );
-      const tempRecipes = dbTempRecipes.map((ele) =>
-        ele.get({ plain: true })
-      );
+// router.get('/', async (req, res) => {
+//     try {
+//       const dbTempRecipes = await Recipe.findAll({
+//             attributes: ['title', 'image', ],
+//           },
+//       );
+//       const tempRecipes = dbTempRecipes.map((ele) =>
+//         ele.get({ plain: true })
+//       );
   
+//       res.render('homepage', {
+//         tempRecipes,
+//         // loggedIn: req.session.loggedIn,
+//       });
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json(err);
+//     }
+//   });
+
+  router.get('/', async (req, res) => {
+    try {
+      const recipeData = await fetch(apiUrl).then(function (response) {
+          if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+              });              
+          }
+      })
+
       res.render('homepage', {
-        tempRecipes,
-        // loggedIn: req.session.loggedIn,
+        recipeData
       });
     } catch (err) {
       console.log(err);
