@@ -1,20 +1,11 @@
 <div id='fullrecipecon' class='container row'>
-          <div class='container-fluid'>
+          <div class='container-fluid row'>
+            <h2 id="recipeTitle">{{fullRecipe.title}}</h2>
             <button class="btn btn-like">
                 <span class="btn-icon btn--icon-default">
                     <span class="fa fa-heart"></span>
                 </span>
-                <span class="btn-icon btn--icon-liked">
-                    <span class="fa fa-heart"></span>
-                </span>
-                <span class="btn-content  btn-content--liked">
-                    Saved
-                </span>
-                <span class="btn-content btn-content--default">
-                    Save
-                </span>
             </button>
-            <h2 id="recipeTitle">{{fullRecipe.title}}</h2>
           </div>
             <div class='col-4 .col-lg-4 .col-xl-4'>
                 <ul id="ingredient" >
@@ -32,5 +23,6 @@
                   <li class="steps">{{step}}</li>
                 {{/each}}
                 </ol>
-            </div>  /api/ruser/{{id}},{{image}},{{title}}
+            </div>  /api/user/{{id}},{{image}},{{title}}
 </div>
+<script src="https://kit.fontawesome.com/42c232374a.js" crossorigin="anonymous"></script>
