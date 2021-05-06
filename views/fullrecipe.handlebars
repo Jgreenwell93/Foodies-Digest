@@ -1,15 +1,22 @@
 <div class='container row'>
           <div class='container-fluid'>
-            <h2 id="recipeTitle">{{Title}}</h2>
+            <h2 id="recipeTitle">{{fullRecipe.title}}</h2>
           </div>
             <div class='col-4 .col-lg-4'>
                 <ul id="ingredient" >
-                    {{ingredients}}
+                    {{#each fullRecipe.ingredients as |ingredient|}}
+                  {{> ingredient}}
+                {{/each}}
                 </ul>
+                <p>{{fullRecipe.ingredients.original}}</p>
             </div>
             <div class='col-8 .col-lg-8 vertical'>
-                <img id='fullrecipeimg' src='{{image}}'>
+                <img id='fullrecipeimg' src='{{fullRecipe.image}}'>
                 <h5>Instructions:</h5>
-                {{instructions}}
-            </div>    
+                <ol>
+                {{#each fullRecipe.instructions as |step|}}
+                  <li>{{step}}</li>
+                {{/each}}
+                </ol>
+            </div>  /api/ruser/{{id}},{{image}},{{title}}
 </div>
