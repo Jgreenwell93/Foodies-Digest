@@ -2,19 +2,18 @@ const saveFavoriteButtonHandler = async (event) => {
     event.preventDefault();
   
     var title = document.querySelector("#recipeTitle").textContent;
-    // var id = document.querySelector("#recipe-id").textContent;
     var fullrecipeimg = document.querySelector("#fullrecipeimg").src;
-    const id = event.target.getAttribute('data-id');
+    const recipe_id = event.target.getAttribute('data-id');
 
     console.log('title = ' + title);
-    console.log('id = ' + id);
+    console.log('recipe_id = ' + recipe_id);
     console.log('fullrecipeimg = ' + fullrecipeimg);
     
     alert("I'm in saveFavorite.js");
   
        const response = await fetch('/api/recipe/', {
         method: 'POST',
-        body: JSON.stringify({ title, id, fullrecipeimg }),
+        body: JSON.stringify({ title, recipe_id, fullrecipeimg }),
         headers: {
           'Content-Type': 'application/json',
         },

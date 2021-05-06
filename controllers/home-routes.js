@@ -17,10 +17,10 @@ router.get('/', async (req, res) => {
     const recipeData = await fetch(apiUrl).then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
-              // console.log(data);
+              console.log(data);
             const recipeArray = data.recipes.map( (recipe) => {
               return {
-                id: recipe.id,
+                recipe_id: recipe.id,
                 title: recipe.title,
                 instructions: recipe.instructions,
                 image: recipe.image,

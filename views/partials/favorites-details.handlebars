@@ -1,6 +1,6 @@
 <div class="card mb-3" style="max-width: 540px;">
     <div class="row no-gutters">
-        <a href='/api/recipe/{{id}}'>
+        <a href='/api/recipe/{{recipe_id}}'>
             <div class="col-md-4">
                 <img src="{{image}}" class="card-img" alt="...">
             </div>
@@ -10,6 +10,6 @@
                 </div>
             </div>
         </a>
-          <button class="btn btn-secondary btn-block" data-id="{{id}}" id="delete-button" type="submit">Delete</button>        
+          <button class="btn btn-secondary btn-block" data-id="{{ recipe_id }}" id="delete-button" type="submit">Delete</button>        
     </div> 
 </div>

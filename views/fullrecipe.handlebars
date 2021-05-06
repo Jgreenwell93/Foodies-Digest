@@ -1,6 +1,6 @@
 <div id='fullrecipecon' class='container row'>
           <div class='container-fluid'>
-            <button id="save-favorite-button" data-id="{{ fullRecipe.id }}" class="btn btn-like">
+            <button id="save-favorite-button" data-id="{{ fullRecipe.recipe_id }}" class="btn btn-like">
                 <span class="btn-icon btn--icon-default">
                     <span class="fa fa-heart"></span>
                 </span>
@@ -33,6 +33,5 @@
                 {{/each}}
                 </ol>
             </div> 
-            <p id="recipe-id" hidden>{{id}}</p>
 </div>
 <script src="/JS/saveFavorite.js"></script>
