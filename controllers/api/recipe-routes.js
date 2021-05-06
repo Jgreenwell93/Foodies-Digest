@@ -18,25 +18,28 @@ router.post('/', withAuth, async (req, res) => {
 
 // route tied to Fetch (userRecipes/favorites) on front end for get all title/image:
 // READ recipe GET ALL ROUTE to return db for logged in user (image, title, id?)
-router.get('/favorites', withAuth, async (req, res) => {
-    try {
-        const allRecipeData = await Recipe.findAll({
-            where: {
-                user_id : req.session.user_id,
-            },
-        });
-        const allRecipes = allRecipeData.map((allRecipe) =>
-            allRecipe.get({ plain: true })
-        );
-        res.render('favorites', {
-            allRecipes,
-            loggedIn: req.session.loggedIn,
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
+// router.get('/:favorites', withAuth, async (req, res) => {
+//     try {
+//         const allRecipeData = await Recipe.findAll({
+//             include: [
+//                 {
+//                     model: Recipe,
+//                     attributes: ['image', 'title', 'id'],
+//                 },
+//             ],
+//         });
+//         const allRecipe = allRecipeData.map((allRecipe) =>
+//             allRecipe.get({ plain: true })
+//         );
+//         res.render('favorites', {
+//             allRecipe,
+//             loggedIn: req.session.loggedIn,
+//         });
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err);
+//     }
+// });
 
 
 // route tied to Fetch (userRecipes/favorites) on front end for get one/return full recipe:

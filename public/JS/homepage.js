@@ -38,7 +38,7 @@ const ingredientSearchHandler = async (event) => {
                 title: recipe.title,
                 image: recipe.image,
               }
-            });  
+            });
 
             console.log('recipeArray = ');
             console.log(recipeArray);
