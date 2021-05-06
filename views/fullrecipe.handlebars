@@ -1,6 +1,6 @@
 <div id='fullrecipecon' class='container row'>
           <div class='container-fluid'>
-            <button class="btn btn-like">
+            <button id="save-favorite-button" data-id="{{ fullRecipe.id }}" class="btn btn-like">
                 <span class="btn-icon btn--icon-default">
                     <span class="fa fa-heart"></span>
                 </span>
@@ -25,12 +25,14 @@
                 <p>{{fullRecipe.ingredients.original}}</p>
             </div>
             <div class='col-8 .col-lg-8 .col-xl-8 vertical'>
-                <img id='fullrecipeimg' src='{{fullRecipe.image}}'>
+                <img id="fullrecipeimg" src='{{fullRecipe.image}}'>
                 <h5>Instructions:</h5>
                 <ol>
                 {{#each fullRecipe.instructions as |step|}}
                   <li class="steps">{{step}}</li>
                 {{/each}}
                 </ol>
-            </div>  /api/ruser/{{id}},{{image}},{{title}}
+            </div> 
+            <p id="recipe-id" hidden>{{id}}</p>
 </div>
+<script src="/JS/saveFavorite.js"></script>

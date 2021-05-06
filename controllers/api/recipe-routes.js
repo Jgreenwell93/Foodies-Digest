@@ -6,7 +6,15 @@ const withAuth = require('../../utils/auth');
 // recipe CREATE ROUTE to save in database for logged in user
 router.post('/', withAuth, async (req, res) => {
     try {
-        const newRecipe = await Recipe.create(req.body);
+        console.log('========req.body========');
+        console.log(req.body);
+        console.log('========req.body========');
+        const newRecipe = await Recipe.create({
+            title: req.body.title,
+            image: req.body.fullrecipeimg,
+            id: req.body.id,
+            user_id: req.session.user_id,
+          });
         res.status(200).json(newRecipe);
 
     } catch (err) {
@@ -77,8 +85,9 @@ var apikey = '2b152eb0695849fb8ee97ece69af186f';
 var apiUrl = 'https://api.spoonacular.com/recipes/324694/information?apiKey=2b152eb0695849fb8ee97ece69af186f';
 const fetch = require('node-fetch');
 
+console.log("I'm in get by ID");
 router.get('/:id', async (req, res) => {
-    var apikey = '2b152eb0695849fb8ee97ece69af186f';
+    var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69';
     var apiUrl = `https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${apikey}`;
     console.log(req.params.id);
     try {

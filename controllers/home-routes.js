@@ -7,7 +7,7 @@ const router = require('express').Router();
 var recipeArray;
 // const withAuth = require('../../utils/auth');
 
-var apikey = '2a40afcf346f48508fca4af2488f00c9';
+var apikey = '664e2f1a5b6e4ce29dc7c98941122be8';
 var apiUrl = 'https://api.spoonacular.com/recipes/random?' + 'apiKey=' + apikey + '&number=3';
 
 const fetch = require('node-fetch');
