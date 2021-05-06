@@ -1,9 +1,9 @@
 const deleteFavoriteHandler = async (event) => {
     event.preventDefault();
 
-    const id = event.target.getAttribute('data-id');
+    const recipe_id = event.target.getAttribute('data-id');
   
-    const response = await fetch(`/api/recipe/delete/${id}`, {
+    const response = await fetch(`/api/recipe/delete/${recipe_id}`, {
         method: 'DELETE',
     });
 

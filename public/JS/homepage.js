@@ -23,7 +23,7 @@ const ingredientSearchHandler = async (event) => {
       ingredients += ingredientThree;
     }
     alert('ingredients= ' + ingredients);
-    var apikey = '2a40afcf346f48508fca4af2488f00c9';
+    var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69';
     var searchByIngredientsUrl = 'https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=' + ingredients + '&instructionsRequired=true&apiKey=' + apikey + '&number=1';    
     alert(searchByIngredientsUrl);
     fetch(searchByIngredientsUrl).then(function (response) {
@@ -34,7 +34,7 @@ const ingredientSearchHandler = async (event) => {
           console.log(data.results);
             const recipeArray = data.results.map( (recipe) => {
               return {
-                id: recipe.id,
+                recipe_id: recipe.recipe_id,
                 title: recipe.title,
                 image: recipe.image,
               }

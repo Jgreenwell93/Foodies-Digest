@@ -1,5 +1,5 @@
 <div id='fullrecipecon' class='container row'>
-          <div class='container-fluid row'>
+          <div class='container-fluid'>
             <h2 id="recipeTitle">{{fullRecipe.title}}</h2>
             <button class="btn btn-like">
                 <span class="btn-icon btn--icon-default">
@@ -16,13 +16,13 @@
                 <p>{{fullRecipe.ingredients.original}}</p>
             </div>
             <div class='col-8 .col-lg-8 .col-xl-8 vertical'>
-                <img id='fullrecipeimg' src='{{fullRecipe.image}}'>
+                <img id="fullrecipeimg" src='{{fullRecipe.image}}'>
                 <h5>Instructions:</h5>
                 <ol>
                 {{#each fullRecipe.instructions as |step|}}
                   <li class="steps">{{step}}</li>
                 {{/each}}
                 </ol>
-            </div>  /api/user/{{id}},{{image}},{{title}}
+            </div> 
 </div>
-<script src="https://kit.fontawesome.com/42c232374a.js" crossorigin="anonymous"></script>
+<script src="/JS/saveFavorite.js"></script>

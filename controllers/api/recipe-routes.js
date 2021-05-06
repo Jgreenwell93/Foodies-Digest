@@ -6,7 +6,15 @@ const withAuth = require('../../utils/auth');
 // recipe CREATE ROUTE to save in database for logged in user
 router.post('/', withAuth, async (req, res) => {
     try {
-        const newRecipe = await Recipe.create(req.body);
+        console.log('========req.body========');
+        console.log(req.body);
+        console.log('========req.body========');
+        const newRecipe = await Recipe.create({
+            title: req.body.title,
+            image: req.body.fullrecipeimg,
+            recipe_id: req.body.recipe_id,
+            user_id: req.session.user_id,
+          });
         res.status(200).json(newRecipe);
 
     } catch (err) {
@@ -18,22 +26,18 @@ router.post('/', withAuth, async (req, res) => {
 
 // route tied to Fetch (userRecipes/favorites) on front end for get all title/image:
 // READ recipe GET ALL ROUTE to return db for logged in user (image, title, id?)
-
-router.get('/:favorites', async (req, res) => {
+router.get('/favorites', withAuth, async (req, res) => {
     try {
         const allRecipeData = await Recipe.findAll({
-            include: [
-                {
-                    model: Recipe,
-                    attributes: ['image', 'title', 'id'],
-                },
-            ],
+            where: {
+                user_id : req.session.user_id,
+            },
         });
-        const allRecipe = allRecipeData.map((allRecipe) =>
+        const allRecipes = allRecipeData.map((allRecipe) =>
             allRecipe.get({ plain: true })
         );
         res.render('favorites', {
-            allRecipe,
+            allRecipes,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {
@@ -43,6 +47,7 @@ router.get('/:favorites', async (req, res) => {
 });
 
 
+
 // route tied to PUT on front end to remove from favorites:
 // route to DELETE/DESTROY saved receipes (if time)
 
@@ -50,8 +55,9 @@ var apikey = '2b152eb0695849fb8ee97ece69af186f';
 var apiUrl = 'https://api.spoonacular.com/recipes/324694/information?apiKey=2b152eb0695849fb8ee97ece69af186f';
 const fetch = require('node-fetch');
 
+console.log("I'm in get by ID");
 router.get('/:id', async (req, res) => {
-    var apikey = '2b152eb0695849fb8ee97ece69af186f';
+    var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69';
     var apiUrl = `https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${apikey}`;
     console.log(req.params.id);
     try {
@@ -67,7 +73,7 @@ router.get('/:id', async (req, res) => {
                     }
 
                     const fullRecipe = {
-                        id: data.id,
+                        recipe_id: data.id,
                         title: data.title,
                         instructions: insArray,
                         image: data.image,
@@ -91,7 +97,7 @@ router.delete('/delete/:id', withAuth, async (req, res) => {
     try {
         const recipeData = await Recipe.destroy({
             where: {
-                id: req.params.id,
+                recipe_id: req.params.recipe_id,
             },
         });
 
