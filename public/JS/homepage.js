@@ -17,7 +17,7 @@ const ingredientSearchHandler = async (event) => {
       ingredients += ingredientOne + ',';
     }
     if (ingredientTwo) {
-      ingredients += ingredientTwo;
+      ingredients += ingredientTwo + ',';
     }
     if (ingredientThree) {
       ingredients += ingredientThree;
@@ -38,7 +38,7 @@ const ingredientSearchHandler = async (event) => {
                 title: recipe.title,
                 image: recipe.image,
               }
-            });  
+            });
 
             console.log('recipeArray = ');
             console.log(recipeArray);
