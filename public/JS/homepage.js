@@ -7,15 +7,25 @@ const ingredientSearchHandler = async (event) => {
     var ingredientOne = document.querySelector('#input-ingredient-one').value;
     var ingredientTwo = document.querySelector('#input-ingredient-two').value;
     var ingredientThree = document.querySelector('#input-ingredient-three').value;
-    var ingredients = [];
 
     console.log(ingredientOne);
     console.log(ingredientTwo);
+    var ingredients = "";
 
   if (ingredientOne || ingredientTwo || ingredientThree) {
-    var apikey = '';
+    if (ingredientOne) {
+      ingredients += ingredientOne + ',';
+    }
+    if (ingredientTwo) {
+      ingredients += ingredientTwo;
+    }
+    if (ingredientThree) {
+      ingredients += ingredientThree;
+    }
+    alert('ingredients= ' + ingredients);
+    var apikey = '2a40afcf346f48508fca4af2488f00c9';
     var searchByIngredientsUrl = 'https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=' + ingredients + '&instructionsRequired=true&apiKey=' + apikey + '&number=1';    
-    console.log(searchByIngredientsUrl);
+    alert(searchByIngredientsUrl);
     fetch(searchByIngredientsUrl).then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {

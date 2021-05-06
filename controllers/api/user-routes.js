@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   
       req.session.save(() => {
         req.session.user_id = userData.id;
-        req.session.logged_in = true;
+        req.session.loggedIn = true;
   
         res.status(200).json(userData);
       });
@@ -21,11 +21,19 @@ router.get('/', async (req, res) => {
 // tie to route on front end
 // route to POST log-in page
 
-router.post('/login', async (req,res)=> {
+router.post('/login', async (req, res) => {
   console.log(req.body.username);
   console.log(req.body.password);
+  console.log("I'm in router.post(/login");
     try {
-        const userData = await User.findOne({where: {username: req.body.username}});
+        const userData = await User.findOne({
+          where: { 
+            username: req.body.username,
+          },
+        });
+
+        console.log('userData = ');
+        console.log(userData);
         
         if(!userData) {
             res
@@ -41,7 +49,7 @@ router.post('/login', async (req,res)=> {
         }
         req.session.save(() => {
           req.session.user_id = userData.id;
-          req.session.logged_in = true;
+          req.session.loggedIn = true;
     res.json({user: userData, message: 'You are logged in!'});
     }); 
  }   
@@ -60,7 +68,7 @@ router.post('/signup', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = newUser.id;
-      req.session.logged_in = true;
+      req.session.loggedIn = true;
 
       res.status(200).json(newUser);
     });
@@ -78,5 +86,17 @@ router.post('/signup', async (req, res) => {
 
 
 // POST route for logout (session destroy)
+
+// Logout
+router.post('/logout', (req, res) => {
+  console.log("I'm in router.post(/logout)");
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 module.exports = router;

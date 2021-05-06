@@ -7,7 +7,7 @@ const router = require('express').Router();
 var recipeArray;
 // const withAuth = require('../../utils/auth');
 
-var apikey = '';
+var apikey = '2a40afcf346f48508fca4af2488f00c9';
 var apiUrl = 'https://api.spoonacular.com/recipes/random?' + 'apiKey=' + apikey + '&number=3';
 
 const fetch = require('node-fetch');
@@ -71,23 +71,23 @@ router.get('/results', async (req, res) => {
 
 
 
-  // router.get('/login', (req, res) => {
-  //   // if (req.session.loggedIn) {
-  //   //   res.redirect('/');
-  //   //   return;
-  //   // }
+  router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
   
-  //   res.render('login');
-  // });
+    res.render('login');
+  });
 
-// router.get('/signup', (req, res) => {
-//     // if (req.session.loggedIn) {
-//     //   res.redirect('/');
-//     //   return;
-//     // }
+router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
   
-//     res.render('signup');
-// });
+    res.render('signup');
+});
 
 
 
