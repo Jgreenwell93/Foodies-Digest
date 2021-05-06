@@ -6,9 +6,6 @@ const withAuth = require('../../utils/auth');
 // recipe CREATE ROUTE to save in database for logged in user
 router.post('/', withAuth, async (req, res) => {
     try {
-        console.log('========req.body========');
-        console.log(req.body);
-        console.log('========req.body========');
         const newRecipe = await Recipe.create({
             title: req.body.title,
             image: req.body.fullrecipeimg,
@@ -55,11 +52,9 @@ var apikey = '2b152eb0695849fb8ee97ece69af186f';
 var apiUrl = 'https://api.spoonacular.com/recipes/324694/information?apiKey=2b152eb0695849fb8ee97ece69af186f';
 const fetch = require('node-fetch');
 
-console.log("I'm in get by ID");
 router.get('/:id', async (req, res) => {
     var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69';
     var apiUrl = `https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${apikey}`;
-    console.log(req.params.id);
     try {
         const temp = await fetch(apiUrl).then(function (recipe) {
             if(recipe.ok) {
@@ -79,7 +74,6 @@ router.get('/:id', async (req, res) => {
                         image: data.image,
                         ingredients: data.extendedIngredients,
                     };
-                    console.log(fullRecipe);
                     res.render('fullrecipe', {fullRecipe})
                 })
             }

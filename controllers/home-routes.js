@@ -7,7 +7,7 @@ const router = require('express').Router();
 var recipeArray;
 // const withAuth = require('../../utils/auth');
 
-var apikey = '664e2f1a5b6e4ce29dc7c98941122be8';
+var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69';
 var apiUrl = 'https://api.spoonacular.com/recipes/random?' + 'apiKey=' + apikey + '&number=3';
 
 const fetch = require('node-fetch');
@@ -17,7 +17,6 @@ router.get('/', async (req, res) => {
     const recipeData = await fetch(apiUrl).then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
-              console.log(data);
             const recipeArray = data.recipes.map( (recipe) => {
               return {
                 recipe_id: recipe.id,
@@ -26,6 +25,7 @@ router.get('/', async (req, res) => {
                 image: recipe.image,
               }
             });  
+
             console.log(recipeArray);
 
             res.render('homepage', {
@@ -43,12 +43,8 @@ router.get('/', async (req, res) => {
 
 
 router.post('/search', async (req, res) => {
-  console.log("i'm in home-route search");
   try {
-
     recipeArray = req.body.recipeArray
-    console.log("recipeArray in /search = ");
-    console.log(recipeArray);
     res.status(200).json(recipeArray); 
     return recipeArray;
   } catch (err) {
@@ -59,7 +55,6 @@ router.post('/search', async (req, res) => {
 
 
 router.get('/results', async (req, res) => {
-  console.log(recipeArray);
   res.render('results', {recipeArray});
 });
 

@@ -11,7 +11,6 @@ const deleteFavoriteHandler = async (event) => {
     document.location.replace('/api/recipe/favorites');
     } else {
     alert('Failed to delete.');
-    console.log(response);
     }
 }
 

@@ -22,9 +22,6 @@ router.get('/', async (req, res) => {
 // route to POST log-in page
 
 router.post('/login', async (req, res) => {
-  console.log(req.body.username);
-  console.log(req.body.password);
-  console.log("I'm in router.post(/login");
     try {
         const userData = await User.findOne({
           where: { 
@@ -32,9 +29,6 @@ router.post('/login', async (req, res) => {
           },
         });
 
-        console.log('userData = ');
-        console.log(userData);
-        
         if(!userData) {
             res
             .status(400)
@@ -89,7 +83,6 @@ router.post('/signup', async (req, res) => {
 
 // Logout
 router.post('/logout', (req, res) => {
-  console.log("I'm in router.post(/logout)");
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();

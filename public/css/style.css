@@ -113,3 +113,10 @@ h5 {
     font-size: 18px;
     font-style: bold; 
 }
+
+
+img {
+    width:100px;
+    height:100px;
+    background: url(/public/images/favicon\(transp\).png) no-repeat scroll 0 0;
+  }

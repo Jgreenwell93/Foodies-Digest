@@ -11,7 +11,6 @@ const signupFormHandler = async (event) => {
             headers: {'Content-Type': 'application/json'},
         });
         if (response.ok) {
-            console.log("are you working");
             document.location.replace('/login');
         } else {
             alert(response.statusText);

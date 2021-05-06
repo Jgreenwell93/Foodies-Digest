@@ -21,13 +21,11 @@ var formSubmitHandler = function (event) {
 var getRecipes = function () {
   var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69'
   var apiUrl = 'https://api.spoonacular.com/recipes/random?' + 'apiKey=' + apikey + '&number=3';
-  console.log('apiurl = ' + apiUrl);
-
+ 
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          console.log(data);
           displayRecipes(data);
         });
       } else {
@@ -48,9 +46,6 @@ var displayRecipes = function (recipes) {
   var collapseRecipeTwoEl = document.querySelector('#collapse-recipe-two');
   var collapseRecipeThreeEl = document.querySelector('#collapse-recipe-three');
 
-  console.log(collapseTitleOneEl.innerHTML);
-  console.log(recipes.recipes[0].title);
-  console.log(recipes.recipes[0].instructions);
 
   collapseTitleOneEl.innerHTML = recipes.recipes[0].title;
   collapseTitleTwoEl.innerHTML = recipes.recipes[1].title;

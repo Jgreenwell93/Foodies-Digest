@@ -22,13 +22,9 @@ var getRepoIssues = function (recipeID) {
   var apikey = 'a8fa9c6592244caeb366aac4bd3ddb69'
   var apiUrl = 'https://api.spoonacular.com/recipes/' + recipeID + '/analyzedInstructions' + '?apiKey=' + apikey;
 
-  console.log(apiUrl);
-
   fetch(apiUrl).then(function (response) {
-    console.log(response);
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
         displayRecipe(data);
 
         if (response.headers.get('Link')) {
@@ -42,8 +38,6 @@ var getRepoIssues = function (recipeID) {
 };
 
 var displayRecipe = function (recipeData) {
-
-  console.log(recipeData);
 
   // for (var i = 0; i < recipeData.length; i++) {
   //   var recipeStepEl = document.createElement('p');
