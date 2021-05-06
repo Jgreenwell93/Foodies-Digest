@@ -31,10 +31,11 @@ const ingredientSearchHandler = async (event) => {
           response.json().then(function (data) {
           console.log(data);
 
-          console.log(data.results);
+          // console.log(data.results);
+          console.log("============ look here ===========");
             const recipeArray = data.results.map( (recipe) => {
               return {
-                recipe_id: recipe.recipe_id,
+                recipe_id: recipe.id,
                 title: recipe.title,
                 image: recipe.image,
               }
