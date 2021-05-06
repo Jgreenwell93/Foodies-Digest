@@ -20,7 +20,7 @@ const saveFavoriteButtonHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/api/receipe/favorites');
+        // document.location.replace('/favorites');
       } else {
         alert('Failed to create new blog post');
       }
