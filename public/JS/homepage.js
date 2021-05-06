@@ -17,7 +17,7 @@ const ingredientSearchHandler = async (event) => {
       ingredients += ingredientOne + ',';
     }
     if (ingredientTwo) {
-      ingredients += ingredientTwo;
+      ingredients += ingredientTwo + ',';
     }
     if (ingredientThree) {
       ingredients += ingredientThree;
