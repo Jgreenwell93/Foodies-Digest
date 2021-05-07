@@ -83,6 +83,7 @@
 
 #logo {
     max-height: 130px;
+    width: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
