@@ -19,7 +19,7 @@ const ingredientSearchHandler = async (event) => {
     if (ingredientThree) {
       ingredients += ',' + ingredientThree;
     }
-    var apikey = 'ddc20a3693e64bab941371bd6b4ad5e1';
+    var apikey = '481279d87a314d4d94b73f8882f542e7';
     var searchByIngredientsUrl = 'https://api.spoonacular.com/recipes/complexSearch/?includeIngredients=' + ingredients + '&instructionsRequired=true&apiKey=' + apikey + '&number=4';    
     fetch(searchByIngredientsUrl).then(function (response) {
         if (response.ok) {
