@@ -75,4 +75,4 @@ The Spoonacular API was the source for all of our searches and recipes. They hav
 <br>
 
 ### Questions
-Any questions for me? Message  on [GitHub](https://github.com/jtrevz) or by email @ jenny.trevizo2013@gmail.com
+Any questions us? Message us on Github or email us at the addresses provided above! Happy cooking!
