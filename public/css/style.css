@@ -128,4 +128,10 @@ img {
     cursor: pointer;
     padding-top: -2px;
     padding-bottom: -2px;
+    font-family: 'Josefin Sans', sans-serif
+}
+
+.nav-link {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 125%;
 }
