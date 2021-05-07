@@ -117,7 +117,7 @@ h5 {
 
 
 img {
-    width:100px;
-    height:100px;
+/*     width:100px;
+    height:100px; */
     background: url(/public/images/favicon\(transp\).png) no-repeat scroll 0 0;
   }
